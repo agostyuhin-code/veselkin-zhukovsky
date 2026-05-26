@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /uploads/
+Disallow: /assets/raw/
+
+# Yandex
+User-agent: Yandex
+Allow: /
+Disallow: /uploads/
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&fbclid
+
+# Google
+User-agent: Googlebot
+Allow: /
+Disallow: /uploads/
+
+# Hosts and sitemap
+Host: https://veselkin-zhukovsky.ru
+Sitemap: https://veselkin-zhukovsky.ru/sitemap.xml
