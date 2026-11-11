@@ -332,18 +332,19 @@ function ContactSection({ initialPkg }) {
     backupLead(form);
 
     try {
-      const res = await fetch(LEAD_ENDPOINT || `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: TG_CHAT_ID,
-          text,
-          disable_web_page_preview: true,
-        }),
-      });
-      const json = await res.json();
-      if (!json.ok) throw new Error(json.description || 'Telegram error');
-      setSent(true);
+      if (LEAD_ENDPOINT) {
+        await fetch(LEAD_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ text }) });
+        setSent(true);
+      } else {
+        const res = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ chat_id: TG_CHAT_ID, text, disable_web_page_preview: true }),
+        });
+        const json = await res.json();
+        if (!json.ok) throw new Error(json.description || 'Telegram error');
+        setSent(true);
+      }
     } catch (err) {
       // Even on error the lead is saved to localStorage as a backup.
       console.error('Telegram send failed:', err);
