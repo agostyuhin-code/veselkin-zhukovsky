@@ -18,8 +18,7 @@ function ConfigSection({ onBook }) {
   const decorPrice = decor ? 4000 : 0;
   const showsPrice = shows.reduce((acc, idx) => acc + SHOWS_PRICE[idx].price, 0);
   const photoZonePrice = { none: 0, fountain: 2800, bento: 4500, big: 9000 }[photoZone] || 0;
-  const cleaningFee = 1500;
-  const total = hours * pricePerHour + animatorPrice + photoPrice + decorPrice + showsPrice + photoZonePrice + cleaningFee;
+  const total = hours * pricePerHour + animatorPrice + photoPrice + decorPrice + showsPrice + photoZonePrice;
 
   function toggleShow(i) {
     setShows(prev => prev.includes(i) ? prev.filter(x => x !== i) : [...prev, i]);
@@ -138,13 +137,12 @@ function ConfigSection({ onBook }) {
               {decor && <li><span>Оформление + сервировка</span><strong>{fmt(decorPrice)}</strong></li>}
               {photo > 0 && <li><span>Фотограф {photo} ч</span><strong>{fmt(photoPrice)}</strong></li>}
               {shows.map(i => <li key={i}><span>{SHOWS_PRICE[i].name}</span><strong>{fmt(SHOWS_PRICE[i].price)}</strong></li>)}
-              <li><span>Уборка стандартная</span><strong>{fmt(cleaningFee)}</strong></li>
             </ul>
             <div className="config__sum-total">
               <span>Итого, от</span>
               <strong>{fmt(total)}</strong>
             </div>
-            <p className="config__sum-note">Стандартная уборка (1 500 ₽) не включена в стоимость при почасовой аренде и оплачивается дополнительно.</p>
+            <p className="config__sum-note">Уборка стандартная (1 500 ₽) и сервировка посуды уже включены при аренде от 3 часов.</p>
             <button className="btn btn--primary btn--lg" onClick={() => onBook('custom')}>
               Забронировать
             </button>
@@ -222,7 +220,7 @@ function ReviewsSection() {
           ))}
         </div>
         <div className="reviews-cta">
-          <a href="https://yandex.com/maps/-/CPwFf-kl" target="_blank" rel="noopener" className="btn btn--ghost">
+          <a href="https://yandex.ru/maps/?text=%D0%96%D1%83%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9+%D1%83%D0%BB.+%D0%90%D0%BC%D0%B5%D1%82-%D1%85%D0%B0%D0%BD+%D0%A1%D1%83%D0%BB%D1%82%D0%B0%D0%BD%D0%B0+15%D0%BA3" target="_blank" rel="noopener" className="btn btn--ghost">
             Все отзывы на Яндекс.Картах →
           </a>
         </div>
@@ -282,8 +280,8 @@ function formatPhone(raw) {
 // Telegram bot for receiving leads. Token is public (visible in client JS) —
 // risk is limited to someone spamming this single chat. Rotate via @BotFather
 // → /revoke if abused.
-const TG_BOT_TOKEN = '8780426570:AAFsjXVffvcDZa1jdAxb3UDV6h6DmDMkl64';
-const TG_CHAT_ID = '354744967';
+const TG_BOT_TOKEN = '8584421293:AAHDdr11awH8Tq4WBdqQTZEIgSkCI5tnDtE';
+const TG_CHAT_ID = '530416636';
 
 function ContactSection({ initialPkg }) {
   const [form, setForm] = useState({ name: '', phone: '', date: '', pkg: initialPkg || '', comment: '' });
@@ -384,7 +382,7 @@ function ContactSection({ initialPkg }) {
                 <Icon name="tg" size={22} color="#229ED9"/>
                 <div>
                   <div className="contact__channel-name">Telegram</div>
-                  <strong>@veselkin_lubertsy</strong>
+                  <strong>@veselkin_zhukovsky</strong>
                 </div>
               </a>
               <a href={MAX} target="_blank" rel="noopener" className="contact__channel">
@@ -404,7 +402,7 @@ function ContactSection({ initialPkg }) {
             </div>
 
             <div className="contact__map">
-              <a href="https://yandex.com/maps/-/CPwFf-kl" target="_blank" rel="noopener" className="contact__map-link">
+              <a href="https://yandex.ru/maps/?text=%D0%96%D1%83%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9+%D1%83%D0%BB.+%D0%90%D0%BC%D0%B5%D1%82-%D1%85%D0%B0%D0%BD+%D0%A1%D1%83%D0%BB%D1%82%D0%B0%D0%BD%D0%B0+15%D0%BA3" target="_blank" rel="noopener" className="contact__map-link">
                 <Icon name="pin" size={22} color="#E04A6B"/>
                 <div>
                   <div className="contact__channel-name">Адрес</div>
@@ -494,10 +492,10 @@ function Footer() {
       <div className="container footer__row">
         <div className="footer__brand">
           <div className="footer__logo">
-            <img src="assets/mascot-cloud.png" alt="Логотип детского лофта Весёлкин в Люберцах"/>
+            <img src="assets/mascot-cloud.png" alt="Логотип детского лофта Весёлкин в Жуковском"/>
             <div>
               <div className="footer__name"><Veselkin dark/></div>
-              <div className="footer__sub">детский лофт · Люберцы</div>
+              <div className="footer__sub">детский лофт · Жуковский</div>
             </div>
           </div>
           <p className="footer__lead">

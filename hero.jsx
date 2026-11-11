@@ -69,7 +69,7 @@ function HeroClassic({ onBook }) {
           <ul className="hero__meta">
             <li><strong>500+</strong><span>праздников провели</span></li>
             <li><strong>5 / 5</strong><span>оценка на Яндексе</span></li>
-            <li><strong>27 чел.</strong><span>комфортно вмещает</span></li>
+            <li><strong>35 чел.</strong><span>комфортно вмещает</span></li>
           </ul>
         </div>
 
@@ -82,7 +82,7 @@ function HeroClassic({ onBook }) {
           </div>
           <div className="hero__art-card hero__art-card--1">
             <span className="hand" style={{fontSize: 32, color: '#6B2EBA'}}>уютно</span>
-            <div className="hero__art-card-sub">10–15 детей, комфортно до 27 человек</div>
+            <div className="hero__art-card-sub">до 10 детей, комфортно до 35 человек</div>
           </div>
         </div>
       </div>
@@ -152,7 +152,7 @@ function HeroBold({ onBook }) {
 
         <div className="hero-bold__bottom">
           <p className="hero-bold__lead">
-            Камерный лофт на 27 человек. 7 готовых пакетов от 20 500 ₽,
+            Камерный лофт на 35 человек. 7 готовых пакетов от 20 500 ₽,
             квесты на 7 тем, фотозона — всё включено.
           </p>
           <div className="hero-bold__ctas">
