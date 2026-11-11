@@ -315,13 +315,13 @@ function ContactSection({ initialPkg }) {
     const pageUrl = (typeof window !== 'undefined' && window.location) ? window.location.href : '';
 
     const text = [
-      '🎉 *Новая заявка с сайта Весёлкин*',
+      '🎉 Новая заявка с сайта Весёлкин',
       '',
-      `👤 *Имя:* ${form.name}`,
-      `📞 *Телефон:* ${form.phone}`,
-      `📅 *Дата праздника:* ${fmtDate}`,
-      `🎁 *Пакет:* ${form.pkg || 'не выбран'}`,
-      form.comment ? `💬 *Комментарий:* ${form.comment}` : '',
+      `👤 Имя: ${form.name}`,
+      `📞 Телефон: ${form.phone}`,
+      `📅 Дата праздника: ${fmtDate}`,
+      `🎁 Пакет: ${form.pkg || 'не выбран'}`,
+      form.comment ? `💬 Комментарий: ${form.comment}` : '',
       '',
       `🕒 Отправлено: ${new Date().toLocaleString('ru-RU')}`,
       pageUrl ? `🔗 ${pageUrl}` : '',
@@ -336,7 +336,6 @@ function ContactSection({ initialPkg }) {
         body: JSON.stringify({
           chat_id: TG_CHAT_ID,
           text,
-          parse_mode: 'Markdown',
           disable_web_page_preview: true,
         }),
       });
@@ -345,7 +344,8 @@ function ContactSection({ initialPkg }) {
       setSent(true);
     } catch (err) {
       // Even on error the lead is saved to localStorage as a backup.
-      setError('Не удалось отправить через сайт. Позвоните, пожалуйста: ' + PHONE);
+      console.error('Telegram send failed:', err);
+      setError('Не удалось отправить через сайт. Позвоните, пожалуйста: ' + PHONE + ' [' + (err && err.message ? err.message : err) + ']');
     } finally {
       setSending(false);
     }
