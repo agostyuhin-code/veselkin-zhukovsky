@@ -281,6 +281,8 @@ function formatPhone(raw) {
 // risk is limited to someone spamming this single chat. Rotate via @BotFather
 // → /revoke if abused.
 const TG_BOT_TOKEN = '8584421293:AAHDdr11awH8Tq4WBdqQTZEIgSkCI5tnDtE';
+// Адрес прокси (Cloudflare Worker). Если пусто — отправка напрямую в Telegram.
+const LEAD_ENDPOINT = 'https://veselkin-zhukovsky.agostyuhin.workers.dev';
 const TG_CHAT_ID = '530416636';
 
 function ContactSection({ initialPkg }) {
@@ -330,7 +332,7 @@ function ContactSection({ initialPkg }) {
     backupLead(form);
 
     try {
-      const res = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+      const res = await fetch(LEAD_ENDPOINT || `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
